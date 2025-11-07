@@ -69,7 +69,14 @@
     createCodeBlock(content, args, inline) {
       const element = document.createElement(inline ? "doki-inline-code" : "doki-code-block");
       const code = document.createElement("code");
-      code.textContent = content;
+      
+      if (inline) {
+        code.textContent = content;
+      } else {
+        // Normalize indentation by removing common leading whitespace
+        const normalizedContent = this.normalizeCodeIndentation(content);
+        code.textContent = normalizedContent;
+      }
 
       if (args.length > 0) {
         code.className = `language-${args[0]}`;
@@ -83,6 +90,37 @@
       element.inline = inline || false;
       
       return element;
+    }
+    
+    normalizeCodeIndentation(content) {
+      if (!content) return content;
+      
+      const lines = content.split('\n');
+      
+      // Find the minimum indentation (excluding empty lines)
+      let minIndent = Infinity;
+      
+      for (const line of lines) {
+        if (line.trim().length === 0) continue; // Skip empty lines
+        
+        const leadingSpaces = line.match(/^(\s*)/)[0].length;
+        if (leadingSpaces < minIndent) {
+          minIndent = leadingSpaces;
+        }
+      }
+      
+      // If no meaningful indentation found, return original content
+      if (minIndent === Infinity || minIndent === 0) {
+        return content;
+      }
+      
+      // Remove the common indentation from all lines
+      const normalizedLines = lines.map(line => {
+        if (line.trim().length === 0) return line; // Keep empty lines as-is
+        return line.substring(minIndent);
+      });
+      
+      return normalizedLines.join('\n').trim();
     }
     
     createList(content, args) {
