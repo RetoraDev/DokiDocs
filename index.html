@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>DokiDocs Example</title>
+    <link rel="stylesheet" href="doki-docs.css">
+</head>
+<body class="doki-hidden">
+    [title: "My Documentation"]
+    
+    [heading: "Introduction"]
+    
+    [subheading: "Code Example"]
+    [codeblock js]
+function helloWorld() {
+  console.log("Hello, World!");
+  return true;
+}
+    [/codeblock]
+
+    [subheading: "Table Example"]
+    [table header]
+    [ Name | Age | Occupation ]
+    [ John Doe | 30 | Developer ]
+    [ Jane Smith | 25 | Designer ]
+    [/table]
+    
+    [note: "This is an important note!"]
+    
+    [warning: "Be careful with this operation!"]
+    
+    [image: "https://picsum.photos/400/200" alt="Example image" width=400px]
+    <script src="doki-docs.js"></script>
+</body>
+</html>

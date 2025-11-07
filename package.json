@@ -1,0 +1,11 @@
+{
+  "name": "doki-docs",
+  "version": "1.0.0",
+  "description": "A lightweight documentation framework with custom tag syntax",
+  "main": "doki-docs.js",
+  "browser": "doki-docs.js",
+  "keywords": ["documentation", "markup", "syntax"],
+  "author": "RetoraDev",
+  "license": "MIT",
+  "no-dependencies": true
+}
