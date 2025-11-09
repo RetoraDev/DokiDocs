@@ -92,7 +92,7 @@
       
       // Normalize indentation by removing common leading whitespace
       const normalizedContent = this.normalizeCodeBlock(content);
-      code.textContent = normalizedContent;
+      code.innerHTML = normalizedContent;
       
       // Set language class for highlight.js
       if (args.length > 0) {
